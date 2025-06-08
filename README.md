@@ -23,3 +23,18 @@ This tool was created as a personal learning project to dive into network progra
 
 ```bash
 python psd.py -t <target> [-p <ports>] [--threads <n>] [-o <output_file>]
+```
+## Example
+```bash
+python psd.py -t ip_list -p 1-1024 --threads 20 -o results.txt
+```
+```bash
+python psd.py -t 192.168.1.0/24 -p 123,22,11,56
+```
+```bash
+python psd.py -t 192.168.1.0 -p 123,22,11,56
+```
+If you don't explicitly specify the ```-p``` value, it will be set to 1-1024
+Also, if you do not specify ```-o```, there will be standard output to the console
+
+
