@@ -9,14 +9,12 @@ def scan_port(target, port):
             result = sock.connect_ex((target, port))
             if result == 0:
                 try:
-                    banner = sock.recv(1024).decode(errors="ignore")
-                    print(Fore.GREEN + f"[{port}] is open! {banner.strip()}")
+                    banner = sock.recv(1024).decode(errors="ignore").strip()
+                    print(Fore.GREEN + f"[{port}] is open! {banner}")
                     return f"[{port}] is open! {banner}"
                 except socket.timeout:
                     print(Fore.GREEN + f"[{port}] is open!")
                     return f"[{port}] is open!"
-                else:
-                    pass
 
     except KeyboardInterrupt:
         print("CTRL+C closed proccess")
