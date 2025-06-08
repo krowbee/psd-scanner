@@ -34,7 +34,8 @@ python psd.py -t 192.168.1.0/24 -p 123,22,11,56
 ```bash
 python psd.py -t 192.168.1.0 -p 123,22,11,56
 ```
-If you don't explicitly specify the ```-p``` value, it will be set to 1-1024
+If you don't explicitly specify the ```-p``` value, it will be set to 1-1024. 
+
 Also, if you do not specify ```-o```, there will be standard output to the console
 
 
