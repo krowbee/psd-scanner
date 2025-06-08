@@ -15,9 +15,6 @@ def scan_port(target, port):
                 except socket.timeout:
                     print(Fore.GREEN + f"[{port}] is open!")
                     return f"[{port}] is open!"
-
-    except KeyboardInterrupt:
-        print("CTRL+C closed proccess")
     except socket.gaierror:
         pass
     except socket.timeout:

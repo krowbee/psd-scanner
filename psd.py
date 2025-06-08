@@ -26,16 +26,18 @@ print(Fore.CYAN + "Scan started! \n"
 
 
 results = []
+try:
+    with ThreadPoolExecutor(max_workers=threads) as executor:
 
-with ThreadPoolExecutor(max_workers=threads) as executor:
+        futures = [executor.submit(scan_port, target, port) for target in targets for port in ports]
 
-    futures = [executor.submit(scan_port, target, port) for target in targets for port in ports]
+        for future in as_completed(futures):
+            results.append(future.result())
 
-    for future in as_completed(futures):
-        results.append(future.result())
-
-if arguments.output:
-    with open(arguments.output, "w") as f:
-        for line in results:
-            if line is not None and line != " ":
-                f.write(f"{line}\n")
+    if arguments.output:
+        with open(arguments.output, "w") as f:
+            for line in results:
+                if line is not None and line != " ":
+                    f.write(f"{line}\n")
+except KeyboardInterrupt:
+    print("Closed with CTRL+C")
