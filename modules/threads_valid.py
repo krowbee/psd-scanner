@@ -1,5 +1,5 @@
 def valid_threads(arguments):
-    default_threads = 6
+    default_threads = 10
     try:
         threads = int(arguments.threads)
         if 0 < threads <= 60:

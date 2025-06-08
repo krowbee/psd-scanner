@@ -1,5 +1,4 @@
 import argparse
-import socket
 from colorama import init, Fore
 from modules.port_parser import parse_ports
 from modules.target_collector import collect_targets
@@ -12,7 +11,7 @@ init()
 argparser = argparse.ArgumentParser(prog="PSD SCANNER", add_help=True)
 argparser.add_argument("-t", "--target", help="Target IP, or IP txt list", required=True)
 argparser.add_argument("-p", "--ports", help="Ports you need to scan", default="1-1024")
-argparser.add_argument("--threads", type=int, help="Set THREADS. Be carefully (DEF:20)", default=6)
+argparser.add_argument("--threads", type=int, help="Set THREADS. Be carefully (DEF:10)", default=10)
 argparser.add_argument("-o", "--output", help="File to output", default=None)
 
 arguments = argparser.parse_args()
@@ -38,4 +37,5 @@ with ThreadPoolExecutor(max_workers=threads) as executor:
 if arguments.output:
     with open(arguments.output, "w") as f:
         for line in results:
-            f.write(f"{line}\n")
+            if line is not None and line != " ":
+                f.write(f"{line}\n")
